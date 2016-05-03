@@ -1,0 +1,18 @@
+NIMBLEMIND   START  400
+FIRST   LDT    #1
+        LDS    #10
+LENGTH  RESW   1
+GAMMA   RESW   1
+INPUT   BYTE   X'F1'
+RDREC   CLEAR  A
+RLOOP   TD     INPUT
+        JEQ    RLOOP
+        RD     INPUT
+        COMPR  A,T
+	JLT    RLOOP
+        COMPR  A,S
+        JGT    RLOOP
+        STA    LENGTH
+        RSUB
+	+JSUB  RDREC
+        END    FIRST
